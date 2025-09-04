@@ -6,7 +6,14 @@
 #include <iostream>
 #include <fstream>
 #include <ios>
+#include <iomanip>
+#include "../ICommand.hpp"
 
-auto cat_cmd(const std::vector<std::string>& args) -> int;
+class Cat : public ICommand {
+    public:
+
+    int run(const std::vector<std::string>& args) override;
+    void help() const override;
+};
 
 #endif

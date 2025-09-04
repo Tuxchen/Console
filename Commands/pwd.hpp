@@ -5,7 +5,14 @@
 #include <string>
 #include <filesystem>
 #include <iostream>
+#include "../ICommand.hpp"
 
-auto pwd_cmd(const std::vector<std::string>& args) -> int;
+class Pwd : public ICommand {
+
+    public:
+
+    int run(const std::vector<std::string>& args) override;
+    void help() const override;
+};
 
 #endif

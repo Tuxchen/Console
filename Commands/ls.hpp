@@ -5,7 +5,14 @@
 #include <string>
 #include <iostream>
 #include <filesystem>
+#include "../ICommand.hpp"
 
-auto ls_cmd(const std::vector<std::string>& args) -> int;
+class Ls : public ICommand {
+
+    public:
+
+    int run(const std::vector<std::string>& args) override;
+    void help() const override;
+};
 
 #endif
