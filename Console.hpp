@@ -4,22 +4,18 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include <vector>
-#include <chrono>
 #include <map>
-#include <functional>
-#include <fstream>
-#include <ios>
-#include <filesystem>
-
-using Command = std::function<int(const std::vector<std::string>& args)>;
+#include <memory>
+#include "ICommand.hpp"
 
 class Console {
     std::regex prompt_pattern;
     std::regex input_pattern;
     std::string prompt;
     std::string input;
-    std::map<std::string, Command> commands;
+
+    using CommandMap = std::map<std::string, std::unique_ptr<ICommand>>;
+    CommandMap commands;
 
     public:
 
@@ -28,6 +24,8 @@ class Console {
     void read();
 
     int eval();
+
+    void run();
 };
 
 #endif

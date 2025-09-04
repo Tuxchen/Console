@@ -9,12 +9,12 @@
 Console::Console() : prompt(">") {
     input_pattern = std::regex(R"((\S+))");
 
-    commands["echo"] = echo_cmd;
-    commands["exit"] = exit_cmd;
-    commands["ls"] = ls_cmd;
-    commands["cat"] = cat_cmd;
-    commands["pwd"] = pwd_cmd;
-    commands["cd"] = cd_cmd;
+    commands["cat"] = std::make_unique<Cat>();
+    commands["echo"] = std::make_unique<Echo>();
+    commands["exit"] = std::make_unique<Exit>();
+    commands["ls"] = std::make_unique<Ls>();
+    commands["pwd"] = std::make_unique<Pwd>();
+    commands["cd"] = std::make_unique<Cd>();
 }
 
 void Console::read() {
@@ -39,10 +39,19 @@ int Console::eval() {
     std::string command = args[0];
 
     try {
-        return commands.at(command)(args);
+        return commands.at(command)->run(args);
     } catch(std::out_of_range &e) {
-        std::cerr << "Invalid command: " << e.what() << std::endl;
+        std::cerr << "Invalid command: " << command << std::endl;
         std::cerr << "Interrupt with Code 10\n";
         return 10;
-    }   
+    }
+}
+
+void Console::run() {
+    int type;
+
+    do {
+        this->read();
+        type = this->eval();
+    } while(type != -1);
 }
