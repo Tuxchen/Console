@@ -4,24 +4,36 @@ A simple console tool that contains all commands without using external programs
 
 Supported Commands:
 
-cat - shows the content of a file (text or binary)
-
-cd - changes the directory
-
-echo - prints text to the console
-
-exit - quits the console
-
-ls - shows all files in a directory
-
-pwd - shows the current path
+- cat - shows the content of a file (text or binary)
+- cd - changes the directory
+- echo - prints text to the console
+- exit - quits the console
+- ls - shows all files in a directory
+- pwd - shows the current path
 
 To compile it on your computer, follow this steps:
 
-1. git clone https://github.com/Tuxchen/Console.git
+1. Clone the project:
 
-2. cd Console
+```bash
+git clone https://github.com/Tuxchen/Console.git
+```
 
-3. g++ -O3 Commands/*.cpp *.cpp -o Console
+2. Change to the directory
 
-Start the console with ./Console
+```bash
+cd Console
+```
+
+
+3. Compile
+
+```bash
+g++ -O3 Commands/*.cpp *.cpp -o Console
+```
+
+4. Start the programm
+
+```bash
+./Console
+```
